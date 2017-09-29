@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <meta charset="utf-8">
+  <title>TheShinyShoeShop</title>
+  <link rel="shortcut icon" height="25px" width="25px" type="image/x-icon" href="14537-200.png">
+  <link rel="stylesheet" href="shoeCat.css" type="text/css" />
+  <script src="https://code.jquery.com/jquery-1.12.4.js"></script>
+</head>
+
+<body class="container">
+
+  <header>
+	<center>
+		<img class="headerImg" src="The%20Shiny%20Shoe%20Shop.png" alt="The Shiny Shoe Shop"/><br>
+    <!-- on page initial load all shoes should show -->
+    <!-- button to add shoes to the database -->
+    <button type="button" id="add">Add Shoes</button>
+    <!-- button that shows all shoes -->
+    <button type="button" class="all">Show all</button>
+    <br>
+
+    <div id="filterBar">
+      <input type="search" name="brand" placeholder="Filter by brand" id="brandFilter">
+      <input type="text" name="size" placeholder="Filter by size" id="sizeFilter">
+    </div>
+
+    <div id="buyBar">
+      <input type="text" class="id" name="id" placeholder="Shoe ID">
+      <button type="button" name="button" id="buyShoe">Purchase shoe</button>
+    </div>
+	</center>
+	  <hr>
+  </header>
+  <!-- show all shoes -->
+	<center>
+    <div class="data">
+
+    </div>
+  <script class="shoeList" type="text/handlebars-x">
+      {{#if shoes}}
+    {{#each shoes}}
+    <div class="shoes">
+    <ul>
+    <strong><li>_ID: {{this._id}}</li></strong>
+    <li>Brand: {{this.brand}}</li>
+    <li>Size: {{this.size}}</li>
+    <li>Colour: {{this.colour}}</li>
+    <li>Amount in stock: {{this.inStock}}</li>
+    </div>
+    {{/each}}
+    </ul>
+    {{else}}
+    <h3>No shoes currently in stock</h3>
+    {{/if}}
+     </script>
+     <br>
+	</center>
+
+  <!-- form to add shoes to the database -->
+<!--	hide form when all shoes are showing-->
+	<form class="addForm">
+		<hr>
+		<h4>Add new stock to the catalogue</h4>
+	<input class="brand" type="text" placeholder="Brand"><br>
+	<input class="colour" type="text" placeholder="Shoe colour"><br>
+	<input class="size" type="number" placeholder="Shoe size"><br>
+	<input class="inStock" type="text" placeholder="Number of stock"><br>
+<button id="addShoe">Add shoe</button>
+		<hr>
+	</form>
+  <!-- text boxes for:
+brand: brand,
+size: size,
+colour: colour,
+instock: inStock -->
+  <!-- -->
+  <script type="text/javascript" src="handlebars/handlebars-v4.0.10.js"></script>
+  <script type="text/javascript" src="shoeCat.js" charset="utf-8"></script>
+</body>
+
+</html>
