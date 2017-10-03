@@ -47,8 +47,9 @@ all.addEventListener('click', function(){
 		url: "https://shoe-cat-api.herokuapp.com/api/shoes/brand/" + brandFilter.value,
 		dataType: "json",
 		success: function (shoes) {
-        document.querySelector('.data').innerHTML = shoeTemplate({shoes: shoes})
-		 	}
+        document.querySelector('.data').innerHTML = shoeTemplate({shoes: shoes});
+        var initDocument = $.extend(true, {}, document);
+        		 	}
 		})
 	})
 // GET : /api/shoes/size/:size
@@ -60,7 +61,8 @@ sizeFilter.addEventListener('keyup', function(shoes){
 		url: "https://shoe-cat-api.herokuapp.com/api/shoes/size/" + sizeFilter.value,
 		dataType: "json",
 		success: function(shoes){
-        document.querySelector('.data').innerHTML = shoeTemplate({shoes: shoes})
+        document.querySelector('.data').innerHTML = shoeTemplate({shoes: shoes});
+        var initDocument = $.extend(true, {}, document);
 		}
 	})
 })
@@ -89,22 +91,23 @@ sizeFilter.addEventListener('keyup', function(shoes){
 // POST  : /api/shoes/sold/:id
 
 
-var buyShoe = document.getElementById("buyShoe");
-var id = document.querySelector('.id');
-buyShoe.addEventListener('click', function(shoes){
-  console.log(id.value);
+// var buyShoe = document.getElementById("buyShoe");
+// var id = document.querySelector('.id');
+$('.data').on('click', function(event){
+  var buyShoe = event.target.value;
+  console.log('===============');
+  console.log(buyShoe);
   $.ajax({
   	type: "POST",
-  	url: "https://shoe-cat-api.herokuapp.com/api/shoes/sold/" + id.value,
+  	url: "https://shoe-cat-api.herokuapp.com/api/shoes/sold/" + buyShoe,
   	dataType: "json",
-    data: {
-      id : id.value
-    },
+    // data: {
+    //   id : buyShoe.value
+    // },
   	success: function(shoes){
   		console.log(arguments);
       document.querySelector('.data').innerHTML = shoeTemplate({shoes: shoes});
       var initDocument = $.extend(true, {}, document);
-      
     	}
   })
 })
@@ -139,7 +142,9 @@ add.addEventListener('click', function(){
     }
 });
 
+var saved = document.querySelector('.saved');
 addShoe.addEventListener('click', function(){
+  if(brand.value.length > 0 && colour.value.length > 0 && size.value.length > 0 && inStock.value.length > 0 ){
   $.ajax({
     type: "POST",
     url: "https://shoe-cat-api.herokuapp.com/api/shoes",
@@ -152,8 +157,11 @@ addShoe.addEventListener('click', function(){
     },
     success: function(data){
       console.log(data);
+
     }
   })
+  window.alert('You shoe has been successfully added');
+}
   })
 
 } ) //END OF JS document

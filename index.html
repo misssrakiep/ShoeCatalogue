@@ -30,6 +30,8 @@
       <input type="text" class="id" name="id" placeholder="Shoe ID">
       <button type="button" name="button" id="buyShoe">Purchase shoe</button>
     </div>
+
+
 	</center>
 	  <hr>
   </header>
@@ -43,12 +45,13 @@
     {{#each shoes}}
     <div class="shoes">
     <ul>
-    <strong><li>_ID: {{this._id}}</li></strong>
-    <li>Brand: {{this.brand}}</li>
-    <li>Size: {{this.size}}</li>
-    <li>Colour: {{this.colour}}</li>
-    <li>Amount in stock: {{this.inStock}}</li>
-    </div>
+    <li><b>Brand:</b> {{this.brand}}</li>
+    <li><b>Size:</b> {{this.size}}</li>
+    <li><b>Colour:</b> {{this.colour}}</li>
+    <li><b>Amount in stock:</b> {{this.inStock}}</li>
+    <br>
+    <button type="button" value="{{this._id}}" name="button" id="buyShoe">Purchase shoe</button>
+        </div>
     {{/each}}
     </ul>
     {{else}}
@@ -57,7 +60,6 @@
      </script>
      <br>
 	</center>
-
   <!-- form to add shoes to the database -->
 <!--	hide form when all shoes are showing-->
 	<form class="addForm">
@@ -70,12 +72,7 @@
 <button id="addShoe">Add shoe</button>
 		<hr>
 	</form>
-  <!-- text boxes for:
-brand: brand,
-size: size,
-colour: colour,
-instock: inStock -->
-  <!-- -->
+
   <script type="text/javascript" src="handlebars/handlebars-v4.0.10.js"></script>
   <script type="text/javascript" src="shoeCat.js" charset="utf-8"></script>
 </body>
